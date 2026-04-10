@@ -1,0 +1,3 @@
+inp,output,timestamp
+,"{""label"": ""washbasin"", ""confidences"": [{""label"": ""washbasin"", ""confidence"": 0.02685762383043766}, {""label"": ""loudspeaker"", ""confidence"": 0.021506311371922493}, {""label"": ""lampshade"", ""confidence"": 0.02102699875831604}]}",2026-04-10 21:13:55.516630
+,"{""label"": ""washbasin"", ""confidences"": [{""label"": ""washbasin"", ""confidence"": 0.02685762383043766}, {""label"": ""loudspeaker"", ""confidence"": 0.021506311371922493}, {""label"": ""lampshade"", ""confidence"": 0.02102699875831604}]}",2026-04-10 21:13:57.466910
