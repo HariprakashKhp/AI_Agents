@@ -1,3 +1,5 @@
+# Gradio with Image
+
 import gradio as gr
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
