@@ -23,7 +23,7 @@ def get_time():
 @tool
 def get_weather(city):
     """Gets City as input and returns the weather data in that city"""
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=e4a81caa25577571d2897d5bbf364b1b"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=API_KEY"
     return requests.get(url).json()
 
 tools = [get_time, get_weather]
