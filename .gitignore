@@ -5,3 +5,4 @@ my_env/
 __pycache__/
 *.pyc
 support/
+.theia/
