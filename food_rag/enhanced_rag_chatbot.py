@@ -1,31 +1,34 @@
 from shared_functions import *
 from typing import List, Dict, Any
-from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes
-from ibm_watsonx_ai.foundation_models import ModelInference
+from langchain_ollama import OllamaLLM
 import json
 
 # Global variables
 food_items = []
 
 # IBM watsonx.ai Configuration
-my_credentials = {
-    "url": "https://us-south.ml.cloud.ibm.com"
-}
+# my_credentials = {
+#     "url": "https://us-south.ml.cloud.ibm.com"
+# }
 
-model_id = "ibm/granite-8b-code-instructibm/granite-8b-code-instruct"
-gen_parms = {"max_new_tokens": 400}
-project_id = "skills-network"  # <--- NOTE: specify "skills-network" as your project_id
-space_id = None
-verify = False
+# model_id = "ibm/granite-8b-code-instructibm/granite-8b-code-instruct"
+# gen_parms = {"max_new_tokens": 400}
+# project_id = "skills-network"  # <--- NOTE: specify "skills-network" as your project_id
+# space_id = None
+# verify = False
 
-# Initialize the LLM model
-model = ModelInference(
-    model_id=model_id,
-    credentials=my_credentials,
-    params=gen_parms,
-    project_id=project_id,
-    space_id=space_id,
-    verify=verify,
+# # Initialize the LLM model
+# model = ModelInference(
+#     model_id=model_id,
+#     credentials=my_credentials,
+#     params=gen_parms,
+#     project_id=project_id,
+#     space_id=space_id,
+#     verify=verify,
+# )
+
+model = OllamaLLM(
+    model="qwen3:latest",
 )
 
 def main():
@@ -50,8 +53,8 @@ def main():
         
         # Test LLM connection
         print("🔗 Testing LLM connection...")
-        test_response = model.generate(prompt="Hello", params=None)
-        if test_response and "results" in test_response:
+        test_response = model.invoke("Hello")
+        if test_response:
             print("✅ LLM connection established")
         else:
             print("❌ LLM connection failed")
@@ -127,11 +130,11 @@ Please provide a helpful, short response that:
 Response:'''
 
         # Generate response using IBM Granite
-        generated_response = model.generate(prompt=prompt, params=None)
+        generated_response = model.invoke(prompt)
         
         # Extract the generated text
-        if generated_response and "results" in generated_response:
-            response_text = generated_response["results"][0]["generated_text"]
+        if generated_response:
+            response_text = generated_response
             
             # Clean up the response if needed
             response_text = response_text.strip()
@@ -309,10 +312,10 @@ Please provide a short comparison that:
 
 Comparison:'''
 
-        generated_response = model.generate(prompt=comparison_prompt, params=None)
+        generated_response = model.invoke(comparison_prompt)
         
-        if generated_response and "results" in generated_response:
-            return generated_response["results"][0]["generated_text"].strip()
+        if generated_response:
+            return generated_response
         else:
             return generate_simple_comparison(query1, query2, results1, results2)
             
