@@ -6,3 +6,4 @@ __pycache__/
 *.pyc
 support/
 .theia/
+tf_env/
