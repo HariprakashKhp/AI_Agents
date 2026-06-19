@@ -8,3 +8,4 @@ support/
 .theia/
 tf_env/
 venv/
+.vscode
