@@ -7,3 +7,4 @@ __pycache__/
 support/
 .theia/
 tf_env/
+venv/
