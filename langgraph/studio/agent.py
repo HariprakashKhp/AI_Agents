@@ -50,7 +50,9 @@ def divide(a: int, b: int) -> int:
     """
     return a / b
 
-llm_with_tools = llm.bind_tools([multiply, add, divide])
+tools = [multiply, add, divide]
+
+llm_with_tools = llm.bind_tools(tools)
 
 sys_message = SystemMessage(content="You are a helpful assistant tasked with writing performing arithmetic on a set of inputs.")
 
@@ -63,7 +65,7 @@ def assistant(state: MessagesState):
 
 builder = StateGraph(MessagesState)
 builder.add_node("assistant", assistant)
-builder.add_node("tools", ToolNode([multiply, add, divide]))
+builder.add_node("tools", ToolNode(tools))
 
 builder.add_edge(START, "assistant")
 builder.add_conditional_edges("assistant" , tools_condition)
